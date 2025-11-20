@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌷✨ 17 años Nancy - Auroras Mágicas y Tulipanes 3D ✨🌷</title>
+    <link rel="stylesheet" href="felix.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+<script src="felix.css"></script>
+</head>
+<body>
+    <!-- Canvas para auroras boreales -->
+    <canvas id="aurora-canvas"></canvas>
+    
+    <!-- Canvas para fuegos artificiales -->
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">🌷✨ Feliz Cumpleaños mi niña hermosa  ✨🌷</h1>
+
+        </header>
+
+        <!-- Ramo de tulipanes 3D -->
+        <div class="bouquet-container" id="bouquet">
+            <div class="tulip tulip1" style="--rotation: -20deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1"></div>
+                    <div class="petal petal2"></div>
+                    <div class="petal petal3"></div>
+                    <div class="petal petal4"></div>
+                    <div class="petal petal5"></div>
+                    <div class="petal petal6"></div>
+                    <div class="petal petal7"></div>
+                    <div class="petal petal8"></div>
+                    <div class="flower-center"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip2" style="--rotation: -8deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #7873f5, #5e35b1, #4527a0);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #5e35b1, #4527a0, #311b92);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #4527a0, #7873f5, #5e35b1);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #7873f5, #7e57c2, #5e35b1);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #7e57c2, #5e35b1, #4527a0);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #5e35b1, #7873f5, #7e57c2);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #4527a0, #311b92, #7873f5);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #7873f5, #5e35b1, #7e57c2);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #e91e63, #8e24aa, #5e35b1);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip3" style="--rotation: -30deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #4fc3f7, #29b6f6, #0288d1);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #29b6f6, #0288d1, #01579b);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #0288d1, #4fc3f7, #29b6f6);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #4fc3f7, #03a9f4, #0288d1);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #03a9f4, #0288d1, #01579b);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #0288d1, #4fc3f7, #03a9f4);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #29b6f6, #01579b, #4fc3f7);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #4fc3f7, #03a9f4, #29b6f6);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #ffd700, #ff8c00, #03a9f4);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip4" style="--rotation: 12deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #ffd700, #ffb300, #ff8f00);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #ffb300, #ff8f00, #ff6f00);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #ff8f00, #ffd700, #ffb300);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #ffd700, #ffc107, #ff8f00);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #ffc107, #ff8f00, #ff6f00);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #ff8f00, #ffd700, #ffc107);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #ffb300, #ff6f00, #ffd700);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #ffd700, #ffc107, #ffb300);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #ff6b6b, #ff8f00, #ffd700);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip5" style="--rotation: 0deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #e91e63, #c2185b, #ad1457);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #c2185b, #ad1457, #880e4f);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #ad1457, #e91e63, #c2185b);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #e91e63, #d81b60, #c2185b);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #d81b60, #c2185b, #ad1457);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #c2185b, #e91e63, #d81b60);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #ad1457, #880e4f, #e91e63);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #e91e63, #d81b60, #c2185b);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #ffffff, #e91e63, #880e4f);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip6" style="--rotation: 18deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #9c27b0, #7b1fa2, #6a1b9a);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #7b1fa2, #6a1b9a, #4a148c);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #6a1b9a, #9c27b0, #7b1fa2);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #9c27b0, #8e24aa, #7b1fa2);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #8e24aa, #7b1fa2, #6a1b9a);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #7b1fa2, #9c27b0, #8e24aa);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #6a1b9a, #4a148c, #9c27b0);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #9c27b0, #8e24aa, #7b1fa2);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #ffd700, #9c27b0, #4a148c);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip7" style="--rotation: -12deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #00bcd4, #00acc1, #0097a7);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #00acc1, #0097a7, #006064);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #0097a7, #00bcd4, #00acc1);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #00bcd4, #0097a7, #00838f);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #0097a7, #00838f, #006064);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #00838f, #00bcd4, #0097a7);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #00acc1, #006064, #00bcd4);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #00bcd4, #0097a7, #00acc1);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #ffffff, #00bcd4, #006064);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+
+            <div class="tulip tulip8" style="--rotation: 8deg;">
+                <div class="tulip-flower">
+                    <div class="petal petal1" style="background: linear-gradient(135deg, #ff5722, #f4511e, #e64a19);"></div>
+                    <div class="petal petal2" style="background: linear-gradient(135deg, #f4511e, #e64a19, #d84315);"></div>
+                    <div class="petal petal3" style="background: linear-gradient(135deg, #e64a19, #ff5722, #f4511e);"></div>
+                    <div class="petal petal4" style="background: linear-gradient(135deg, #ff5722, #f4511e, #e64a19);"></div>
+                    <div class="petal petal5" style="background: linear-gradient(135deg, #f4511e, #e64a19, #d84315);"></div>
+                    <div class="petal petal6" style="background: linear-gradient(135deg, #e64a19, #ff5722, #f4511e);"></div>
+                    <div class="petal petal7" style="background: linear-gradient(135deg, #f4511e, #d84315, #ff5722);"></div>
+                    <div class="petal petal8" style="background: linear-gradient(135deg, #ff5722, #e64a19, #f4511e);"></div>
+                    <div class="flower-center" style="background: radial-gradient(circle, #ffd700, #ff5722, #d84315);"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf1" style="--leaf-rotation: -35deg; --leaf-y: 10deg;"></div>
+                    <div class="leaf leaf2" style="--leaf-rotation: 35deg; --leaf-y: -10deg;"></div>
+                    <div class="leaf leaf3" style="--leaf-rotation: -25deg; --leaf-y: 5deg;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de cumpleaños -->
+        <div class="birthday-message">
+            <p class="message-text">
+                Querida Nancy, 🌷✨<br><br>
+                Me encantaria felicitarte en este dia tan hermoso y especial, felicidades
+                por tus 17 otoños pintando el mundo con tu belleza y alegría espectacular.<br><br>
+                Que cada año te traiga nuevas aventuras, sueños cumplidos y 
+                momentos tan especiales y mágicos para ti mi mujercita hermosa. 🌌💖✨<br><br>
+                ¡Feliz cumpleaños, mi estrellita boreal Eres verdaderamente única y especial. 🎆🌟
+            </p>
+            <div class="age-display">17</div>
+        </div>
+
+        <!-- Botones interactivos ultra mejorados -->
+        <div class="interaction-buttons">
+            <button class="magic-btn" onclick="createSpectacularFireworks()">🎆 Fuegos Artificiales Espectaculares</button>
+            <button class="magic-btn" onclick="makeTulipsDance()">💃 Tulipanes Mágicos </button>
+            <button class="magic-btn" onclick="changeAuroraColors()">🌈 Cambiar Auroras </button>
+            <button class="magic-btn" onclick="createMagicSparkles()">✨ Lluvia de Chispas </button>
+            <button class="magic-btn" onclick="createFlowerExplosion()">🌸 Explosión de Flores</button>
+            <button class="magic-btn" onclick="createRainbowEffect()">🦄 Arcoíris Mágico</button>
+        </div>
+    </div>
+</body>
+</html>

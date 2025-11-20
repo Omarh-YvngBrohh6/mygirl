@@ -1,0 +1,696 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #0a0e27 0%, #1a1f3a 40%, #2d1b69 70%, #1a1f3a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* Canvas para auroras boreales y fuegos artificiales */
+        #aurora-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* Contenedor principal con perspectiva 3D */
+        .main-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            transform-style: preserve-3d;
+        }
+
+        /* Header animado con efectos 3D */
+        .header {
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeInDown 2s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        .title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: linear-gradient(45deg, #ff6ec7, #7873f5, #4fc3f7, #ffd700, #ff6ec7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite, glow 3s ease-in-out infinite alternate, titleFloat 6s ease-in-out infinite;
+            text-shadow: 0 0 50px rgba(255, 110, 199, 0.8);
+            margin-bottom: 10px;
+            transform-style: preserve-3d;
+        }
+
+        .subtitle {
+            color: #e1bee7;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 0.5s forwards, subtitleGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(225, 190, 231, 0.9);
+        }
+
+        /* Ramo de tulipanes 3D mejorado */
+        .bouquet-container {
+            position: relative;
+            width: 500px;
+            height: 600px;
+            margin: 50px auto;
+            transform-style: preserve-3d;
+            animation: bouquetFloat 8s ease-in-out infinite, bouquetRotate 20s linear infinite;
+            transform: rotateX(-10deg);
+        }
+
+        .tulip {
+            position: absolute;
+            transform-origin: bottom center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            animation: windEffect 4s ease-in-out infinite;
+        }
+
+        .tulip:hover {
+            transform: scale(1.15) rotateY(15deg) rotateZ(5deg) translateY(-10px);
+            filter: brightness(1.3);
+        }
+
+        /* Pétalos de tulipán 3D ultra realistas */
+        .tulip-flower {
+            position: relative;
+            width: 80px;
+            height: 100px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            animation: flowerBreathe 3s ease-in-out infinite;
+        }
+
+        .petal {
+            position: absolute;
+            width: 35px;
+            height: 50px;
+            border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+            box-shadow: 
+                inset 0 -8px 15px rgba(0,0,0,0.3),
+                inset 0 5px 10px rgba(255,255,255,0.3),
+                0 5px 20px rgba(0,0,0,0.4);
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+            animation: petalShimmer 2s ease-in-out infinite;
+        }
+
+        .petal::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            height: 15px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        .petal::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(0,0,0,0.3), transparent);
+            border-radius: 50%;
+        }
+
+        /* Posiciones y colores mejorados de pétalos */
+        .petal1 { 
+            background: linear-gradient(135deg, #ff6ec7, #ff1493, #c71585);
+            transform: rotate(-25deg) translateX(18px) rotateX(10deg);
+            animation-delay: 0s;
+        }
+        .petal2 { 
+            background: linear-gradient(135deg, #ff1493, #c71585, #8b008b);
+            transform: rotate(-65deg) translateX(8px) rotateX(5deg);
+            animation-delay: 0.2s;
+        }
+        .petal3 { 
+            background: linear-gradient(135deg, #c71585, #ff6ec7, #ff1493);
+            transform: rotate(25deg) translateX(18px) rotateX(10deg);
+            animation-delay: 0.4s;
+        }
+        .petal4 { 
+            background: linear-gradient(135deg, #ff6ec7, #ff69b4, #ff1493);
+            transform: rotate(65deg) translateX(8px) rotateX(5deg);
+            animation-delay: 0.6s;
+        }
+        .petal5 { 
+            background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585);
+            transform: rotate(0deg) translateY(-8px) rotateX(15deg);
+            animation-delay: 0.8s;
+        }
+        .petal6 { 
+            background: linear-gradient(135deg, #ff1493, #ff6ec7, #ff69b4);
+            transform: rotate(90deg) translateX(12px) rotateX(8deg);
+            animation-delay: 1s;
+        }
+        .petal7 { 
+            background: linear-gradient(135deg, #c71585, #8b008b, #ff6ec7);
+            transform: rotate(-35deg) translateX(15px) rotateX(-5deg);
+            animation-delay: 1.2s;
+        }
+        .petal8 { 
+            background: linear-gradient(135deg, #ff6ec7, #ff1493, #ff69b4);
+            transform: rotate(35deg) translateX(15px) rotateX(-5deg);
+            animation-delay: 1.4s;
+        }
+
+        /* Tallo y hojas 3D realistas */
+        .stem {
+            width: 6px;
+            height: 140px;
+            background: linear-gradient(45deg, #4caf50, #2e7d32, #1b5e20);
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 
+                2px 2px 8px rgba(0,0,0,0.4),
+                inset 1px 1px 3px rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+
+        .stem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1px;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            border-radius: 2px;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: linear-gradient(135deg, #66bb6a, #4caf50, #388e3c);
+            border-radius: 0 100% 0 100%;
+            box-shadow: 
+                0 3px 8px rgba(0,0,0,0.3),
+                inset 1px 1px 3px rgba(255,255,255,0.3);
+            transform-style: preserve-3d;
+            animation: leafWave 3s ease-in-out infinite;
+        }
+
+        .leaf::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            height: 8px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .leaf1 {
+            top: 40px;
+            left: -35px;
+            transform: rotate(-35deg) rotateY(10deg);
+            animation-delay: 0s;
+        }
+
+        .leaf2 {
+            top: 70px;
+            right: -35px;
+            transform: rotate(35deg) rotateY(-10deg) scaleX(-1);
+            animation-delay: 1s;
+        }
+
+        .leaf3 {
+            top: 100px;
+            left: -30px;
+            transform: rotate(-25deg) rotateY(5deg) scale(0.8);
+            animation-delay: 2s;
+        }
+
+        /* Posicionamiento 3D individual de tulipanes */
+        .tulip1 { 
+            bottom: 0; 
+            left: 200px; 
+            transform: rotate(-20deg) rotateY(-15deg) translateZ(20px);
+            animation-delay: 0s;
+        }
+        .tulip2 { 
+            bottom: 0; 
+            left: 260px; 
+            transform: rotate(-8deg) rotateY(-5deg) translateZ(40px);
+            animation-delay: 0.5s;
+        }
+        .tulip3 { 
+            bottom: 0; 
+            left: 160px; 
+            transform: rotate(-30deg) rotateY(-20deg) translateZ(10px);
+            animation-delay: 1s;
+        }
+        .tulip4 { 
+            bottom: 0; 
+            left: 320px; 
+            transform: rotate(12deg) rotateY(15deg) translateZ(50px);
+            animation-delay: 1.5s;
+        }
+        .tulip5 { 
+            bottom: 0; 
+            left: 230px; 
+            transform: rotate(0deg) rotateY(0deg) translateZ(80px) scale(1.2);
+            animation-delay: 2s;
+        }
+        .tulip6 { 
+            bottom: 0; 
+            left: 280px; 
+            transform: rotate(18deg) rotateY(10deg) translateZ(60px);
+            animation-delay: 2.5s;
+        }
+        .tulip7 { 
+            bottom: 0; 
+            left: 190px; 
+            transform: rotate(-12deg) rotateY(-8deg) translateZ(30px) scale(0.95);
+            animation-delay: 3s;
+        }
+        .tulip8 { 
+            bottom: 0; 
+            left: 300px; 
+            transform: rotate(8deg) rotateY(5deg) translateZ(45px);
+            animation-delay: 3.5s;
+        }
+
+        /* Centros de flores brillantes */
+        .flower-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffd700, #ff8c00, #ff6347);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                inset 0 0 8px rgba(255, 140, 0, 0.6);
+            animation: centerGlow 2s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        /* Mensaje de cumpleaños mejorado */
+        .birthday-message {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 3px solid transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
+                              linear-gradient(45deg, #ff6ec7, #7873f5, #4fc3f7, #ffd700);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 
+                0 15px 50px rgba(255, 110, 199, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 2s ease-out 1s forwards, messageFloat 6s ease-in-out infinite;
+            opacity: 0;
+            transform-style: preserve-3d;
+        }
+
+        .message-text {
+            color: #ffffff;
+            font-size: 1.4rem;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        .age-display {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ff6ec7, #7873f5, #4fc3f7, #ffd700);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: 
+                ageGradient 3s ease-in-out infinite,
+                agePulse 2s ease-in-out infinite,
+                ageFloat 4s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Botones interactivos ultra mejorados */
+        .interaction-buttons {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            transform-style: preserve-3d;
+        }
+
+        .magic-btn {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6ec7, #7873f5, #4fc3f7);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 25px rgba(255, 110, 199, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            animation: btnGradient 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magic-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .magic-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .magic-btn:hover {
+            transform: translateY(-8px) rotateX(5deg) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(255, 110, 199, 0.7),
+                inset 0 0 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .magic-btn:active {
+            transform: translateY(-4px) scale(0.98);
+        }
+
+        /* Estrellas animadas mejoradas */
+        .star {
+            position: fixed;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 3s ease-in-out infinite;
+            z-index: 1;
+            filter: blur(0.5px);
+        }
+
+        .star.bright {
+            background: linear-gradient(45deg, #ffffff, #ffd700);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+        }
+
+        /* Partículas mágicas mejoradas */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ffffff, #ff6ec7, transparent);
+            border-radius: 50%;
+            filter: blur(0.5px);
+        }
+
+        .magic-orb {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffd700, #ff6ec7, #7873f5);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Nuevas animaciones espectaculares */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0) rotateX(0); }
+            50% { transform: translateY(-10px) rotateX(5deg); }
+        }
+
+        @keyframes subtitleGlow {
+            from { text-shadow: 0 0 30px rgba(225, 190, 231, 0.9); }
+            to { text-shadow: 0 0 50px rgba(225, 190, 231, 1), 0 0 70px rgba(255, 110, 199, 0.6); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(255, 110, 199, 0.5); }
+            to { text-shadow: 0 0 60px rgba(255, 110, 199, 1), 0 0 90px rgba(120, 115, 245, 0.8), 0 0 120px rgba(79, 195, 247, 0.6); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) rotateX(-20deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) rotateX(20deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bouquetFloat {
+            0%, 100% { transform: translateY(0) rotateX(-10deg); }
+            25% { transform: translateY(-15px) rotateX(-8deg); }
+            75% { transform: translateY(15px) rotateX(-12deg); }
+        }
+
+        @keyframes bouquetRotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        @keyframes windEffect {
+            0%, 100% { transform: translateX(0) rotate(var(--rotation)); }
+            25% { transform: translateX(3px) rotate(calc(var(--rotation) + 2deg)); }
+            75% { transform: translateX(-3px) rotate(calc(var(--rotation) - 2deg)); }
+        }
+
+        @keyframes flowerBreathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes petalShimmer {
+            0%, 100% { filter: brightness(1) saturate(1); }
+            50% { filter: brightness(1.2) saturate(1.3); }
+        }
+
+        @keyframes leafWave {
+            0%, 100% { transform: rotate(var(--leaf-rotation)) rotateY(var(--leaf-y)); }
+            50% { transform: rotate(calc(var(--leaf-rotation) + 5deg)) rotateY(calc(var(--leaf-y) + 10deg)); }
+        }
+
+        @keyframes centerGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), inset 0 0 8px rgba(255, 140, 0, 0.6);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 215, 0, 1), inset 0 0 15px rgba(255, 140, 0, 0.8);
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        @keyframes messageFloat {
+            0%, 100% { transform: translateY(0) rotateX(0); }
+            50% { transform: translateY(-8px) rotateX(2deg); }
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 3px 15px rgba(0,0,0,0.6); }
+            to { text-shadow: 0 3px 25px rgba(0,0,0,0.8), 0 0 30px rgba(255, 110, 199, 0.4); }
+        }
+
+        @keyframes ageGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes agePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes ageFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes btnGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0.5) rotate(0deg); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2) rotate(180deg); 
+            }
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1.5) rotate(90deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(0.5) rotate(360deg);
+            }
+        }
+
+        /* Partículas de fuegos artificiales */
+        @keyframes fireworkRise {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(var(--explode-y)) scale(0.5);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fireworkExplode {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Efectos de partículas */
+        .firework-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: fireworkParticle 2s ease-out forwards;
+        }
+
+        @keyframes fireworkParticle {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        /* Responsividad mejorada */
+        @media (max-width: 768px) {
+            .bouquet-container {
+                width: 350px;
+                height: 450px;
+            }
+
+            .tulip1 { left: 140px; }
+            .tulip2 { left: 180px; }
+            .tulip3 { left: 120px; }
+            .tulip4 { left: 220px; }
+            .tulip5 { left: 160px; }
+            .tulip6 { left: 200px; }
+            .tulip7 { left: 130px; }
+            .tulip8 { left: 210px; }
+
+            .birthday-message {
+                padding: 30px;
+                margin: 20px;
+            }
+
+            .message-text {
+                font-size: 1.2rem;
+            }
+
+            .interaction-buttons {
+                gap: 15px;
+            }
+
+            .magic-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
